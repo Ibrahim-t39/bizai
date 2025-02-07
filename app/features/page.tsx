@@ -11,18 +11,23 @@ export default function Features() {
             <FeatureCard
               title="AI Chatbot"
               description="24/7 virtual receptionist for customer inquiries and order tracking. Trained on your business FAQs for personalized assistance."
+              link="https://aimeechallengerobot.streamlit.app/"
             />
             <FeatureCard
               title="Inventory & Sales Management"
               description="Mobile-friendly dashboard with low-code integration. Connect with Google Sheets, Excel, or POS systems for seamless tracking."
+              link = "https://inventory.zoho.com/app/878250984#/home/inventory-dashboard"
+
             />
             <FeatureCard
               title="Financial Assistant"
               description="Get spending insights, budget alerts, and simple tax reports. Integrates with popular payment platforms for comprehensive financial management."
+               
             />
             <FeatureCard
               title="Marketing Assistant"
               description="AI-powered content generation for social media, ad copy, and promotional emails. Suggests cost-effective ad placement strategies."
+              link = "https://replyguy.com/overview"
             />
             <FeatureCard
               title="DIY Website Builder"
@@ -47,14 +52,22 @@ export default function Features() {
 interface FeatureCardProps {
   title: string;
   description: string;
+  link?: string;
 }
 
-function FeatureCard({ title, description }: FeatureCardProps) {
+function FeatureCard({ title, description, link }: FeatureCardProps) {
   return (
     <div className="p-6 border rounded-lg">
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      <h3 className="text-xl font-semibold mb-2">
+        {link ? (
+          <Link href={link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            {title}
+          </Link>
+        ) : (
+          title
+        )}
+      </h3>
       <p className="text-gray-600">{description}</p>
     </div>
   )
-}
-
+        }
