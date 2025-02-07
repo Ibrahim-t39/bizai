@@ -27,7 +27,7 @@ export default function Features() {
             <FeatureCard
               title="Marketing Assistant"
               description="AI-powered content generation for social media, ad copy, and promotional emails. Suggests cost-effective ad placement strategies."
-              link = "https://replyguy.com/overview"
+              link = "https://replyguy.com/"
             />
             <FeatureCard
               title="DIY Website Builder"
