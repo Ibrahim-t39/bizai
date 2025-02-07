@@ -22,7 +22,7 @@ export default function Features() {
             <FeatureCard
               title="Financial Assistant"
               description="Get spending insights, budget alerts, and simple tax reports. Integrates with popular payment platforms for comprehensive financial management."
-               
+              link = "https://next.waveapps.com/66431973-a6dd-4a1d-a80b-ecaba18b5a56/transactions"
             />
             <FeatureCard
               title="Marketing Assistant"
@@ -32,6 +32,7 @@ export default function Features() {
             <FeatureCard
               title="DIY Website Builder"
               description="Create a professional business landing page with our one-click setup and pre-made templates. Easy integration with e-commerce platforms."
+              link = "https://ecom-always-fried-princess.wpcomstaging.com/wp-admin/admin.php?page=wc-admin&path=%2Fcustomize-store"
             />
           </div>
         </div>
