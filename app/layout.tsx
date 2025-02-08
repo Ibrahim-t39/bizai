@@ -13,7 +13,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "SmartBizAI - Intelligent Business Assistant",
+  title: "EasyBiz - Intelligent Business Assistant",
   description: "Transform your business operations with AI-powered automation, insights, and growth strategies.",
   keywords: "AI, business automation, digital transformation, small business, enterprise solutions",
 };
@@ -49,10 +49,10 @@ export default function RootLayout({
                 >
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
-                      <span className="text-white font-bold text-xl">S</span>
+                      <span className="text-white font-bold text-xl">E</span>
                     </div>
                     <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-                      SmartBizAI
+                      EasyBiz
                     </span>
                   </div>
                   <div className="absolute inset-x-0 h-1 -bottom-4 bg-gradient-to-r from-blue-500 to-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
@@ -92,9 +92,9 @@ export default function RootLayout({
                 <div className="space-y-4">
                   <div className="flex items-center space-x-2">
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
-                      <span className="text-white font-bold text-xl">S</span>
+                      <span className="text-white font-bold text-xl">E</span>
                     </div>
-                    <span className="text-xl font-bold text-white">SmartBizAI</span>
+                    <span className="text-xl font-bold text-white">EasyBiz</span>
                   </div>
                   <p className="text-sm text-gray-400">
                     Transforming businesses with intelligent AI solutions.
@@ -143,7 +143,7 @@ export default function RootLayout({
 
               <div className="mt-12 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center">
                 <p className="text-sm text-gray-400 mb-4 md:mb-0">
-                  © {new Date().getFullYear()} SmartBizAI. All rights reserved.
+                  © {new Date().getFullYear()} EasyBizAI. All rights reserved.
                 </p>
                 <div className="flex space-x-6">
                   {['Twitter', 'LinkedIn', 'GitHub'].map((social) => (
