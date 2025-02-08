@@ -37,7 +37,7 @@ export default function Features() {
 const features: FeatureCardProps[] = [
   {
     title: "AI Chatbot",
-    description: "24/7 virtual receptionist for customer inquiries and order tracking. Trained on your business FAQs for personalized assistance.",
+    description: "24/7 AI virtual consultant for your business, named Davon, trained to help with all your business needs.",
     link: "https://aimeechallengerobot.streamlit.app/",
   },
   {
@@ -47,7 +47,7 @@ const features: FeatureCardProps[] = [
   },
   {
     title: "Financial Assistant",
-    description: "Get spending insights, budget alerts, and simple tax reports. Integrates with popular payment platforms for comprehensive financial management.",
+    description: "Get spending insights, budget alerts, and simple tax reports.  This helps with your accounting, payroll, budgeting, and simple tax preparation.  Integrates with popular payment platforms for comprehensive financial management.",
     link: "https://next.waveapps.com/66431973-a6dd-4a1d-a80b-ecaba18b5a56/transactions",
   },
   {
@@ -58,7 +58,7 @@ const features: FeatureCardProps[] = [
   {
     title: "DIY Website Builder",
     description: "Create a professional business landing page with our one-click setup and pre-made templates. Easy integration with e-commerce platforms.",
-    link: "https://ecom-always-fried-princess.wpcomstaging.com/wp-admin/admin.php?page=wc-admin&path=%2Fcustomize-store",
+    link: "https://wordpress.com/themes/all/ecom-always-fried-princess.wpcomstaging.com?s=bnb",
   },
 ];
 
