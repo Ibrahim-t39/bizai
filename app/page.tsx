@@ -1,98 +1,188 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import { ArrowRight, Zap, DollarSign, Brain } from "lucide-react";
+import { ArrowRight, Zap, DollarSign, Brain, ShieldCheck, Globe, MessageSquare, Layers, BarChart, Code } from "lucide-react";
 
-const GradientText: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = "" }) => (
-  <span className={`bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-500 ${className}`}>
+import { ReactNode } from "react";
+
+const GradientText = ({ children, className = "" }: { children: ReactNode, className?: string }) => (
+  <span className={`bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-fuchsia-500 to-rose-500 ${className}`}>
     {children}
   </span>
 );
 
+interface FeatureCardProps {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  desc: string;
+  delay: number;
+}
+
+const FeatureCard = ({ icon: Icon, title, desc, delay }: FeatureCardProps) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay }}
+    viewport={{ once: true }}
+    className="relative group"
+  >
+    <div className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-rose-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
+    <Card className="h-full p-8 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 border-none shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
+      <div className="flex flex-col items-center text-center">
+        <div className="mb-6 p-4 rounded-full bg-gradient-to-r from-violet-500/10 to-rose-500/10">
+          <Icon className="w-12 h-12 text-violet-400" />
+        </div>
+        <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-violet-300 transition-colors duration-300">
+          {title}
+        </h3>
+        <p className="text-gray-300 text-lg leading-relaxed">{desc}</p>
+      </div>
+    </Card>
+  </motion.div>
+);
+
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0);
+  const { scrollYProgress } = useScroll();
   const controls = useAnimation();
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const headerY = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
 
-  useEffect(() => {
-    controls.start({ opacity: 1, y: 0 });
-  }, [controls]);
+  const features = [
+    {
+      icon: Brain,
+      title: "AI-Powered Insights",
+      desc: "Transform data into actionable strategies with our advanced machine learning algorithms and predictive analytics."
+    },
+    {
+      icon: Zap,
+      title: "Smart Automation",
+      desc: "Streamline operations and boost efficiency with intelligent workflow automation tailored to your business."
+    },
+    {
+      icon: BarChart,
+      title: "Growth Analytics",
+      desc: "Track performance metrics and uncover opportunities with comprehensive business intelligence tools."
+    },
+    {
+      icon: Globe,
+      title: "Global Integration",
+      desc: "Seamlessly connect with international markets and expand your business reach worldwide."
+    },
+    {
+      icon: ShieldCheck,
+      title: "Enterprise Security",
+      desc: "Protect your assets with military-grade encryption and advanced threat detection systems."
+    },
+    {
+      icon: MessageSquare,
+      title: "Smart Communication",
+      desc: "Enable intelligent customer engagement with AI-powered conversation and support tools."
+    }
+  ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-gray-900 via-yellow-800 to-orange-900 text-white overflow-hidden">
-      <main className="flex-1 relative">
-        <section className="h-screen flex items-center justify-center relative">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={controls} className="text-center z-10 px-6 max-w-4xl mx-auto">
-            <GradientText className="text-8xl font-extrabold mb-6 drop-shadow-lg">The Future of Business</GradientText>
-            <h2 className="text-4xl mb-10 opacity-80 tracking-wide font-light">Reimagine AI-Powered Growth</h2>
-            <Button
-              asChild
-              size="lg"
-              className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-semibold hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 transform hover:scale-110 shadow-xl"
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-slate-950 to-gray-950 text-white">
+      <main>
+        {/* Hero Section */}
+        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-violet-500/10 via-fuchsia-500/5 to-transparent pointer-events-none" />
+          <motion.div 
+            className="text-center px-6 max-w-5xl mx-auto relative z-10"
+            style={{ opacity: headerOpacity, y: headerY }}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              <Link href="/features">
-                Discover Innovation <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+              <GradientText className="text-7xl md:text-8xl font-extrabold mb-8 block leading-tight">
+                The Future of Business
+              </GradientText>
+              <h2 className="text-3xl md:text-4xl mb-12 text-gray-300 font-light">
+                Transform Your Enterprise with Intelligent Innovation
+              </h2>
+              <div className="flex gap-4 justify-center">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105"
+                >
+                  <Link href="/features">
+                    Explore Features <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="bg-transparent border-2 border-violet-400 text-violet-400 hover:bg-violet-400/10 px-8 py-6 text-lg rounded-full transition-all duration-300"
+                >
+                  <Link href="/demo">Watch Demo</Link>
+                </Button>
+              </div>
+            </motion.div>
           </motion.div>
         </section>
 
-        <section className="py-40 px-6 relative">
-          <div className="container mx-auto">
-            <motion.h2
+        {/* Features Grid */}
+        <section className="py-32 px-6 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-violet-900/20 via-transparent to-transparent" />
+          <div className="container mx-auto relative z-10">
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: scrollY > 200 ? 1 : 0, y: scrollY > 200 ? 0 : 20 }}
-              className="text-6xl font-bold mb-20 text-center"
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-center mb-20"
             >
-              <GradientText>Break Boundaries</GradientText>
-            </motion.h2>
-            <div className="grid gap-16 md:grid-cols-3">
-              {[
-                { icon: Zap, title: "Hyper Automation", desc: "AI that streamlines every task at lightning speed." },
-                { icon: DollarSign, title: "Intelligent Cost Reduction", desc: "Maximize profits while reducing inefficiencies." },
-                { icon: Brain, title: "Cognitive AI", desc: "Unlock deep insights for data-driven success." },
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: scrollY > 300 ? 1 : 0, y: scrollY > 300 ? 0 : 20 }}
-                  transition={{ delay: index * 0.2 }}
-                  className="bg-gradient-to-br from-yellow-700 to-orange-800 p-12 rounded-3xl shadow-3xl hover:shadow-4xl transition-all duration-300 transform hover:scale-110 cursor-pointer group relative overflow-hidden"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-yellow-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                  <item.icon className="w-20 h-20 mb-8 text-orange-400 group-hover:text-orange-300 transition-colors duration-300" />
-                  <h3 className="text-4xl font-semibold mb-6 group-hover:text-orange-300 transition-colors duration-300">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-300 group-hover:text-white transition-colors duration-300 text-xl">{item.desc}</p>
-                </motion.div>
+              <GradientText className="text-5xl md:text-6xl font-bold mb-6 block">
+                Break Boundaries
+              </GradientText>
+              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                Unlock the full potential of your business with our cutting-edge solutions
+              </p>
+            </motion.div>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {features.map((feature, index) => (
+                <FeatureCard key={index} {...feature} delay={index * 0.1} />
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-40 px-6 relative text-center">
-          <motion.h2 className="text-6xl font-bold mb-16">
-            <GradientText>Be Part of the Revolution</GradientText>
-          </motion.h2>
-          <motion.p className="text-3xl mb-16 text-gray-300 max-w-4xl mx-auto">
-            Early adopters gain exclusive access to cutting-edge AI solutions. Elevate your business today.
-          </motion.p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-gradient-to-r from-orange-500 to-yellow-500 text-white font-semibold hover:from-orange-600 hover:to-yellow-600 transition-all duration-300 transform hover:scale-110 shadow-xl"
-          >
-            <Link href="/early-access">Join Now</Link>
-          </Button>
+        {/* CTA Section */}
+        <section className="py-32 px-6 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-violet-900/20 via-fuchsia-900/10 to-transparent" />
+          <div className="container mx-auto relative z-10 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <GradientText className="text-5xl md:text-6xl font-bold mb-8 block">
+                Join the Revolution
+              </GradientText>
+              <p className="text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                Get early access to our platform and stay ahead of the competition.
+                Transform your business today.
+              </p>
+              <Button
+                asChild
+                size="lg"
+                className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white px-12 py-6 text-xl rounded-full transition-all duration-300 hover:scale-105"
+              >
+                <Link href="/early-access">
+                  Get Started <ArrowRight className="ml-2 h-6 w-6" />
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
         </section>
       </main>
     </div>
