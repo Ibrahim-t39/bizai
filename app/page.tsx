@@ -1,11 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react";
-import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import { ArrowRight, Zap, DollarSign, Brain, ShieldCheck, Globe, MessageSquare, Layers, BarChart, Code } from "lucide-react";
+import { ArrowRight, Zap, Brain, ShieldCheck, Globe, MessageSquare, BarChart } from "lucide-react";
 
 import { ReactNode } from "react";
 
@@ -47,7 +46,6 @@ const FeatureCard = ({ icon: Icon, title, desc, delay }: FeatureCardProps) => (
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
-  const controls = useAnimation();
 
   const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const headerY = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
