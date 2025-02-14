@@ -120,7 +120,7 @@ export default function Home() {
                   variant="outline"
                   className="bg-transparent border-2 border-violet-400 text-violet-400 hover:bg-violet-400/10 px-8 py-6 text-lg rounded-full transition-all duration-300"
                 >
-                  <Link href="/https://www.youtube.com/watch?v=2BuulvHDBDE">Watch Demo</Link>
+                  <Link href="https://www.youtube.com/watch?v=2BuulvHDBDE">Watch Demo</Link>
                 </Button>
               </div>
             </motion.div>
