@@ -175,7 +175,7 @@ export default function Home() {
                 size="lg"
                 className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700 text-white px-12 py-6 text-xl rounded-full transition-all duration-300 hover:scale-105"
               >
-                <Link href="/early-access">
+                <Link href="/signup">
                   Get Started <ArrowRight className="ml-2 h-6 w-6" />
                 </Link>
               </Button>

@@ -65,17 +65,21 @@ export default function RootLayout({
                 </nav>
 
                 <div className="flex items-center space-x-4">
-                  <Button
-                    variant="ghost"
-                    className="hidden md:inline-flex text-gray-300 hover:text-white"
-                  >
-                    Sign In
-                  </Button>
+                  <Link href="/signin">
+                    <Button
+                      variant="ghost"
+                      className="hidden md:inline-flex text-gray-300 hover:text-white"
+                    >
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link href="/signin">
                   <Button
                     className="bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition-all duration-200"
                   >
                     Get Started
                   </Button>
+                  </Link>
                 </div>
               </div>
             </div>
