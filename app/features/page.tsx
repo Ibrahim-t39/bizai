@@ -36,7 +36,7 @@ export default function Features() {
 /* Features Data */
 const features: FeatureCardProps[] = [
   {
-    title: "AI Chatbot",
+    title: "AI Business Consultant",
     description: "24/7 AI virtual consultant for your business, named Davon, trained to help with all your business needs.",
     link: "https://aimeechallengerobot.streamlit.app/",
   },
